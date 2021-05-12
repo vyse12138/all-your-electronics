@@ -1,18 +1,11 @@
 <template>
   <nav>
-    <div class="container">
-      <ul class="nav__left">
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/admin">Admin</router-link>
-        </li>
-        <li>
-          <router-link to="/cart">Cart</router-link>
-        </li>
-      </ul>
-    </div>
+    <el-menu default-active="1" mode="horizontal" router>
+      <el-menu-item index="/"> Home </el-menu-item>
+      <el-menu-item index="/admin"> Admin </el-menu-item>
+      <el-menu-item index="/cart"> Cart </el-menu-item>
+      <el-menu-item index="/login"> Login </el-menu-item>
+    </el-menu>
   </nav>
   <router-view />
 </template>
@@ -20,7 +13,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
-
 export default defineComponent({
   name: 'App',
   components: {
@@ -35,7 +27,5 @@ export default defineComponent({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

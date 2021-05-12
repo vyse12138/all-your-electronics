@@ -10,6 +10,7 @@ import Admin from '../views/Admin/Admin.vue'
 import New from '../views/Admin/New.vue'
 import Edit from '../views/Admin/Edit.vue'
 import Product from '../views/Admin/Product.vue'
+import Login from '../views/Login.vue'
 
 import Detail from '../views/Detail.vue'
 
@@ -18,6 +19,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home
+    // component: () => import('@/views/home.vue') // or lazy load
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
     // component: () => import('@/views/home.vue') // or lazy load
   },
   {
@@ -55,7 +62,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior() {
     return { top: 0 }
