@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const sqlite3 = require('sqlite3').verbose()
-let accountDatabase = new sqlite3.Database('./databases/account.db')
+let accountDB = new sqlite3.Database('./databases/account.db')
 
 // CORS
 app.all('/*', (req, res, next) => {
@@ -22,11 +22,32 @@ app.use(express.json())
 app.use(express.static('public'))
 
 app.post('/api/login', (req, res) => {
-  res.send(req.body)
+  accountDB.get(
+    `SELECT * FROM CustomerAccount WHERE Username=? AND Password=?`,
+    [req.body.username, req.body.password],
+    (err, row) => {
+      if (err) {
+        throw err
+      }
+
+      if (row) {
+        res.send(true)
+      } else {
+        res.send(false)
+      }
+    }
+  )
+})
+
+app.post('/api/signup', (req, res) => {
+  accountDB.run(
+    `INSERT INTO CustomerAccount (Username, Password) VALUES (?, ?)`,
+    [req.body.username, req.body.password]
+  )
+
+  res.status(200).end()
 })
 
 app.listen(3000, () => {
   console.log('project listening at http://localhost:$3000')
 })
-
-accountDatabase.close()

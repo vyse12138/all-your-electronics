@@ -11,6 +11,7 @@ import New from '../views/Admin/New.vue'
 import Edit from '../views/Admin/Edit.vue'
 import Product from '../views/Admin/Product.vue'
 import Login from '../views/Login.vue'
+import SignUp from '../views/SignUp.vue'
 
 import Detail from '../views/Detail.vue'
 
@@ -25,7 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Login',
     component: Login
-    // component: () => import('@/views/home.vue') // or lazy load
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
   },
   {
     path: '/cart',

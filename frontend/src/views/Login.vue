@@ -2,7 +2,7 @@
   <div>
     <br />
 
-    <el-input v-model="username" placeholder="Username" clearable></el-input>
+    <el-input v-model="username" placeholder="Username"></el-input>
     <br />
     <br />
     <el-input
@@ -11,11 +11,22 @@
       show-password
     ></el-input>
     <br />
+
+    <el-alert
+      v-if="loginFailed"
+      :closable="false"
+      title="Password does not match!"
+      type="error"
+    >
+    </el-alert>
     <br />
-    <el-button type="primary" @click="handleLogin"> Login In </el-button>
+
+    <el-button type="primary" @click="handleLogin"> Log In </el-button>
     <br />
     <br />
-    <el-button type="success" @click="handleSignUp"> Or Sign Up </el-button>
+    <router-link to="/signup">
+      <el-button plain type="success"> or Sign Up </el-button>
+    </router-link>
   </div>
 </template>
 
@@ -24,6 +35,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 const username = ref('')
 const password = ref('')
+const loginFailed = ref(false)
 const handleLogin = () => {
   axios
     .post('http://localhost:3000/api/login', {
@@ -32,22 +44,9 @@ const handleLogin = () => {
     })
     .then((res) => {
       console.log(res.data)
-    })
-}
-const handleSignUp = () => {
-  axios
-    .post('http://localhost:3000/api/signup', {
-      username: username.value,
-      password: password.value
-    })
-    .then((res) => {
-      console.log(res.data)
+      loginFailed.value = !res.data
     })
 }
 </script>
 
-<style scoped>
-.el-input {
-  width: 30%;
-}
-</style>
+<style scoped></style>
