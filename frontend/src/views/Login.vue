@@ -38,7 +38,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import router from '../router/index'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 import axios from 'axios'
 import { useStore } from 'vuex'
 
