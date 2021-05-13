@@ -40,6 +40,9 @@
 import { ref } from 'vue'
 import router from '../router/index'
 import axios from 'axios'
+import { useStore } from 'vuex'
+
+const store = useStore()
 const username = ref('')
 const password = ref('')
 const loginFailed = ref(false)
@@ -55,6 +58,7 @@ const handleLogin = () => {
       loginFailed.value = !res.data
       if (!loginFailed.value) {
         loginSuccessed.value = true
+        store.commit('login')
         setTimeout(() => {
           router.push('./')
         }, 2000)

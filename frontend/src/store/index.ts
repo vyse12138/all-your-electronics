@@ -1,27 +1,28 @@
 import { createStore } from 'vuex'
 
 const defaultState = {
-  count: 0
+  loginState: false
 }
 
-// Create a new store instance.
 export default createStore({
   state() {
     return defaultState
   },
   mutations: {
-    increment(state: typeof defaultState) {
-      state.count++
+    login(state: typeof defaultState) {
+      state.loginState = true
+    },
+    logout(state: typeof defaultState) {
+      state.loginState = false
     }
   },
   actions: {
-    increment(context) {
-      context.commit('increment')
+    login(context) {
+      context.commit('login')
+    },
+    logout(context) {
+      context.commit('logout')
     }
   },
-  getters: {
-    double(state: typeof defaultState) {
-      return 2 * state.count
-    }
-  }
+  getters: {}
 })

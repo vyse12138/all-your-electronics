@@ -6,6 +6,7 @@ import {
 } from 'vue-router'
 import Home from '../views/Home.vue'
 import Cart from '../views/Cart.vue'
+import Category from '../views/Category.vue'
 import Admin from '../views/Admin/Admin.vue'
 import New from '../views/Admin/New.vue'
 import Edit from '../views/Admin/Edit.vue'
@@ -36,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path: '/category/:name',
+    name: 'Category',
+    component: Category
   },
   {
     path: '/admin',

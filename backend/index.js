@@ -35,6 +35,10 @@ app.post('/api/login', (req, res) => {
   )
 })
 
+app.get('/api/catalog/:category', (req, res) => {
+  res.send(req.params)
+})
+
 app.post('/api/signup', (req, res) => {
   accountDB.run(
     `INSERT INTO CustomerAccount (Username, Password) VALUES (?, ?)`,
