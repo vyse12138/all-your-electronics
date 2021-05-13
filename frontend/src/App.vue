@@ -28,11 +28,4 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-.el-input {
-  width: 30%;
-}
-.el-alert {
-  width: 30%;
-  margin: 0 auto;
-}
 </style>

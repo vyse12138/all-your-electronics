@@ -11,7 +11,7 @@
       show-password
     ></el-input>
     <br />
-
+    <br />
     <el-alert
       v-if="loginFailed"
       :closable="false"
@@ -20,7 +20,6 @@
     >
     </el-alert>
     <br />
-
     <el-button type="primary" @click="handleLogin"> Log In </el-button>
     <br />
     <br />
@@ -49,4 +48,12 @@ const handleLogin = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-input {
+  width: 30%;
+}
+.el-alert {
+  width: 30%;
+  margin: 0 auto;
+}
+</style>

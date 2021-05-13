@@ -80,4 +80,12 @@ const handleSignUp = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-input {
+  width: 30%;
+}
+.el-alert {
+  width: 30%;
+  margin: 0 auto;
+}
+</style>
