@@ -39,6 +39,13 @@
       type="error"
     >
     </el-alert>
+    <el-alert
+      v-if="signUpSuccessed"
+      :closable="false"
+      title="Sign up success! Returning to login page..."
+      type="success"
+    >
+    </el-alert>
     <br />
     <el-button type="success" @click="handleSignUp">Sign Up </el-button>
     <br />
@@ -51,12 +58,14 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import router from '../router/index'
 import axios from 'axios'
 const username = ref('')
 const password = ref('')
 const passwordConfirm = ref('')
 const signupFailed = ref(false)
 const passwordUnmatched = ref(false)
+const signUpSuccessed = ref(false)
 const handleSignUp = () => {
   if (username.value === '' || password.value === '') {
     signupFailed.value = true
@@ -69,23 +78,27 @@ const handleSignUp = () => {
     return
   }
   passwordUnmatched.value = false
+
   axios
     .post('http://localhost:3000/api/signup', {
       username: username.value,
       password: password.value
     })
-    .then((res) => {
-      console.log(res.data)
+    .then(() => {
+      signUpSuccessed.value = true
+      setTimeout(() => {
+        router.push('./login')
+      }, 2000)
     })
 }
 </script>
 
 <style scoped>
 .el-input {
-  width: 30%;
+  width: 300px;
 }
 .el-alert {
-  width: 30%;
+  width: 300px;
   margin: 0 auto;
 }
 </style>

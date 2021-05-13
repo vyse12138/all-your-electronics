@@ -11,11 +11,7 @@ app.all('/*', (req, res, next) => {
     'Access-Control-Allow-Headers',
     'Content-type,Accept,X-Access-Token,X-Key'
   )
-  if (req.method == 'OPTIONS') {
-    res.status(200).end()
-  } else {
-    next()
-  }
+  next()
 })
 app.use(express.json())
 // host front end pages

@@ -15,8 +15,15 @@
     <el-alert
       v-if="loginFailed"
       :closable="false"
-      title="Password does not match!"
+      title="Username or password is invalid!"
       type="error"
+    >
+    </el-alert>
+    <el-alert
+      v-if="loginSuccessed"
+      :closable="false"
+      title="Login success! Going to the home page..."
+      type="success"
     >
     </el-alert>
     <br />
@@ -31,10 +38,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import router from '../router/index'
 import axios from 'axios'
 const username = ref('')
 const password = ref('')
 const loginFailed = ref(false)
+const loginSuccessed = ref(false)
 const handleLogin = () => {
   axios
     .post('http://localhost:3000/api/login', {
@@ -44,16 +53,22 @@ const handleLogin = () => {
     .then((res) => {
       console.log(res.data)
       loginFailed.value = !res.data
+      if (!loginFailed.value) {
+        loginSuccessed.value = true
+        setTimeout(() => {
+          router.push('./')
+        }, 2000)
+      }
     })
 }
 </script>
 
 <style scoped>
 .el-input {
-  width: 30%;
+  width: 300px;
 }
 .el-alert {
-  width: 30%;
+  width: 300px;
   margin: 0 auto;
 }
 </style>
