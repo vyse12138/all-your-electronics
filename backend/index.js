@@ -35,8 +35,59 @@ app.post('/api/login', (req, res) => {
   )
 })
 
-app.get('/api/catalog/:category', (req, res) => {
-  res.send(req.params)
+app.get('/api/catelog/:category', (req, res) => {
+  let data
+  switch (req.params.category) {
+    case 'Phone':
+      data = [
+        { name: 'iPhone 12', price: 1299 },
+        { name: 'Vivo X50', price: 899 },
+        { name: 'Oppo X3', price: 999 },
+        { name: 'Samsung Galaxy X21', price: 1099 }
+      ]
+      break
+    case 'Computer':
+      data = [
+        { name: 'MacBook Air', price: 1499 },
+        { name: 'MacBook Pro', price: 2099 },
+        { name: 'iMac', price: 4099 },
+        { name: 'Mac mini', price: 1699 }
+      ]
+      break
+    case 'TV':
+      data = [
+        { name: '8k Ultra HD TV', price: 3999 },
+        { name: '4k Ultra HD TV', price: 2999 },
+        { name: '2k HD TV', price: 1999 },
+        { name: '1k Normal TV', price: 999 }
+      ]
+      break
+    case 'Camera':
+      data = [
+        { name: '4k Camera', price: 1899 },
+        { name: 'GoPro Camera', price: 1599 },
+        { name: 'Action Camera', price: 899 },
+        { name: 'Security Camera', price: 299 }
+      ]
+      break
+    case 'Pad':
+      data = [
+        { name: 'iPad', price: 899 },
+        { name: 'jPad', price: 799 },
+        { name: 'kPad', price: 699 },
+        { name: 'aPad', price: 599 }
+      ]
+      break
+    case 'Headphone':
+      data = [
+        { name: 'AirPods', price: 249 },
+        { name: 'AirPods Pro', price: 399 },
+        { name: 'AirPods Max', price: 799 },
+        { name: 'PowerBeats', price: 299 }
+      ]
+      break
+  }
+  res.json(data)
 })
 
 app.post('/api/signup', (req, res) => {
