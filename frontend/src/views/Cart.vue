@@ -1,45 +1,42 @@
 <template>
   <div>
-    <div class="title">
-      <h1>Shopping Cart</h1>
-      <el-table :data="store.state.cart" empty-text="Your cart is empty">
-        <el-table-column sortable prop="name" label="Product">
-        </el-table-column>
-        <el-table-column sortable prop="price" label="Price($)">
-        </el-table-column>
-        <el-table-column sortable prop="quantity" label="Quantity">
-        </el-table-column>
-        <el-table-column label="Operation">
-          <template #default="scope">
-            <el-button
-              plain
-              size="small"
-              type="success"
-              @click="handleAdd(scope.row)"
-              >+ 1
-            </el-button>
-            <el-button
-              plain
-              size="small"
-              type="warning"
-              @click="handleRemove(scope.row)"
-              >- 1
-            </el-button>
-            <el-button
-              plain
-              size="small"
-              type="danger"
-              @click="handleDelete(scope.row)"
-              >Delete
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <h2>Total: ${{ store.getters.total }}</h2>
-      <el-button plain type="primary" @click="handleCheckOut"
-        >Check Out</el-button
-      >
-    </div>
+    <h1>Shopping Cart</h1>
+    <el-table :data="store.state.cart" empty-text="Your cart is empty">
+      <el-table-column sortable prop="name" label="Product"> </el-table-column>
+      <el-table-column sortable prop="price" label="Price($)">
+      </el-table-column>
+      <el-table-column sortable prop="quantity" label="Quantity">
+      </el-table-column>
+      <el-table-column label="Operation">
+        <template #default="scope">
+          <el-button
+            plain
+            size="small"
+            type="success"
+            @click="handleAdd(scope.row)"
+            >+ 1
+          </el-button>
+          <el-button
+            plain
+            size="small"
+            type="warning"
+            @click="handleRemove(scope.row)"
+            >- 1
+          </el-button>
+          <el-button
+            plain
+            size="small"
+            type="danger"
+            @click="handleDelete(scope.row)"
+            >Delete
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <h2>Total: ${{ store.getters.total }}</h2>
+    <el-button plain type="primary" @click="handleCheckOut"
+      >Check Out</el-button
+    >
   </div>
 </template>
 

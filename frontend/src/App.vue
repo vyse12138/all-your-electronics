@@ -4,6 +4,8 @@
       <el-menu-item index="/"> Home </el-menu-item>
       <el-menu-item index="/admin"> Admin </el-menu-item>
       <el-menu-item index="/cart"> Cart </el-menu-item>
+      <el-menu-item index="/chat"> Chat</el-menu-item>
+
       <!-- <el-menu-item index="/login"> Login </el-menu-item> -->
       <el-menu-item v-if="store.state.loginState" index="/user" id="user">
         <el-avatar

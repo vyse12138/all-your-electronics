@@ -8,13 +8,14 @@ import Home from '../views/Home.vue'
 import Cart from '../views/Cart.vue'
 import Category from '../views/Category.vue'
 import Admin from '../views/Admin/Admin.vue'
+import User from '../views/User.vue'
+import Chat from '../views/Chat.vue'
+
 import New from '../views/Admin/New.vue'
 import Edit from '../views/Admin/Edit.vue'
 import Product from '../views/Admin/Product.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
-
-import Detail from '../views/Detail.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,6 +28,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    component: Chat
   },
   {
     path: '/signup',
@@ -64,11 +75,6 @@ const routes: Array<RouteRecordRaw> = [
         component: Edit
       }
     ]
-  },
-  {
-    path: '/detail',
-    name: 'Detail',
-    component: Detail
   }
 ]
 
