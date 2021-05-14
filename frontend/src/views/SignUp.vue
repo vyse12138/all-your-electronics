@@ -57,39 +57,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import axios from 'axios'
-const username = ref('')
-const password = ref('')
-const passwordConfirm = ref('')
-const signupFailed = ref(false)
-const passwordUnmatched = ref(false)
-const signUpSuccessed = ref(false)
+ref: username = ''
+ref: password = ''
+ref: passwordConfirm = ''
+ref: signupFailed = false
+ref: passwordUnmatched = false
+ref: signUpSuccessed = false
 const handleSignUp = () => {
-  if (username.value === '' || password.value === '') {
-    signupFailed.value = true
+  if (username === '' || password === '') {
+    signupFailed = true
     return
   }
-  signupFailed.value = false
+  signupFailed = false
 
-  if (password.value !== passwordConfirm.value) {
-    passwordUnmatched.value = true
+  if (password !== passwordConfirm) {
+    passwordUnmatched = true
     return
   }
-  passwordUnmatched.value = false
+  passwordUnmatched = false
 
   axios
     .post('http://localhost:3000/api/signup', {
-      username: username.value,
-      password: password.value
+      username: username,
+      password: password
     })
     .then(() => {
-      signUpSuccessed.value = true
+      signUpSuccessed = true
       setTimeout(() => {
         router.push('./login')
-      }, 2000)
+      }, 1000)
     })
 }
 </script>

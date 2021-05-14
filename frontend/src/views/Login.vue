@@ -37,32 +37,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import axios from 'axios'
 import { useStore } from 'vuex'
 
 const store = useStore()
-const username = ref('')
-const password = ref('')
-const loginFailed = ref(false)
-const loginSuccessed = ref(false)
+ref: username = ''
+ref: password = ''
+ref: loginFailed = false
+ref: loginSuccessed = false
 const handleLogin = () => {
   axios
     .post('http://localhost:3000/api/login', {
-      username: username.value,
-      password: password.value
+      username: username,
+      password: password
     })
     .then((res) => {
       console.log(res.data)
-      loginFailed.value = !res.data
-      if (!loginFailed.value) {
-        loginSuccessed.value = true
+      loginFailed = !res.data
+      if (!loginFailed) {
+        loginSuccessed = true
         store.commit('login')
         setTimeout(() => {
           router.push('./')
-        }, 2000)
+        }, 1000)
       }
     })
 }
