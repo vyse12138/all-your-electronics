@@ -1,7 +1,6 @@
 <template>
   <div>
-    <br />
-
+    <h2>Log In</h2>
     <el-input v-model="username" placeholder="Username"></el-input>
     <br />
     <br />
@@ -11,21 +10,6 @@
       show-password
     ></el-input>
     <br />
-    <br />
-    <el-alert
-      v-if="loginFailed"
-      :closable="false"
-      title="Username or password is invalid!"
-      type="error"
-    >
-    </el-alert>
-    <el-alert
-      v-if="loginSuccessed"
-      :closable="false"
-      title="Login success! Going to the home page..."
-      type="success"
-    >
-    </el-alert>
     <br />
     <el-button type="primary" @click="handleLogin"> Log In </el-button>
     <br />
@@ -40,13 +24,13 @@
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import axios from 'axios'
+import { ElMessage } from 'element-plus'
 import { useStore } from 'vuex'
 
 const store = useStore()
 ref: username = ''
 ref: password = ''
 ref: loginFailed = false
-ref: loginSuccessed = false
 const handleLogin = () => {
   axios
     .post('http://localhost:3000/api/login', {
@@ -57,11 +41,21 @@ const handleLogin = () => {
       console.log(res.data)
       loginFailed = !res.data
       if (!loginFailed) {
-        loginSuccessed = true
         store.commit('login')
+        ElMessage({
+          duration: 2000,
+          type: 'success',
+          message: `Login success! Going to the home page...`
+        })
         setTimeout(() => {
           router.push('./')
-        }, 1000)
+        }, 2000)
+      } else {
+        ElMessage({
+          duration: 2000,
+          type: 'error',
+          message: `Username or password is invalid!`
+        })
       }
     })
 }

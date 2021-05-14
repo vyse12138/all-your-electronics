@@ -1,6 +1,7 @@
 <template>
   <div>
-    <br />
+    <h2>Sign Up</h2>
+
     <el-input
       type="text"
       v-model="username"
@@ -25,28 +26,6 @@
     ></el-input>
     <br />
     <br />
-    <el-alert
-      v-if="signupFailed"
-      :closable="false"
-      title="Username or password is empty!"
-      type="error"
-    >
-    </el-alert>
-    <el-alert
-      v-if="passwordUnmatched"
-      :closable="false"
-      title="Password does not match!"
-      type="error"
-    >
-    </el-alert>
-    <el-alert
-      v-if="signUpSuccessed"
-      :closable="false"
-      title="Sign up success! Returning to login page..."
-      type="success"
-    >
-    </el-alert>
-    <br />
     <el-button type="success" @click="handleSignUp">Sign Up </el-button>
     <br />
     <br />
@@ -57,27 +36,32 @@
 </template>
 
 <script setup lang="ts">
+import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import axios from 'axios'
 ref: username = ''
 ref: password = ''
 ref: passwordConfirm = ''
-ref: signupFailed = false
-ref: passwordUnmatched = false
 ref: signUpSuccessed = false
 const handleSignUp = () => {
-  if (username === '' || password === '') {
-    signupFailed = true
+  if (username === '' || password === '' || passwordConfirm === '') {
+    ElMessage({
+      duration: 2000,
+      type: 'error',
+      message: `Username or password is empty!`
+    })
     return
   }
-  signupFailed = false
 
   if (password !== passwordConfirm) {
-    passwordUnmatched = true
+    ElMessage({
+      duration: 2000,
+      type: 'error',
+      message: `Password does not match!`
+    })
     return
   }
-  passwordUnmatched = false
 
   axios
     .post('http://localhost:3000/api/signup', {
@@ -85,10 +69,14 @@ const handleSignUp = () => {
       password: password
     })
     .then(() => {
-      signUpSuccessed = true
+      ElMessage({
+        duration: 2000,
+        type: 'success',
+        message: `Sign up success! Going back to login page...`
+      })
       setTimeout(() => {
         router.push('./login')
-      }, 1000)
+      }, 2000)
     })
 }
 </script>

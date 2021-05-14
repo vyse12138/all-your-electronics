@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
-
+import type Product from '../interfaces/Product'
 const defaultState = {
-  loginState: false
+  loginState: false,
+  cart: Array<Product>()
 }
 
 export default createStore({
@@ -14,6 +15,9 @@ export default createStore({
     },
     logout(state: typeof defaultState) {
       state.loginState = false
+    },
+    addToCart(state: typeof defaultState, product: Product) {
+      state.cart.push(product)
     }
   },
   actions: {
