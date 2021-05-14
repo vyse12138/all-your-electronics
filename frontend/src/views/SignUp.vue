@@ -47,7 +47,7 @@ ref: signUpSuccessed = false
 const handleSignUp = () => {
   if (username === '' || password === '' || passwordConfirm === '') {
     ElMessage({
-      duration: 2000,
+      duration: 1200,
       type: 'error',
       message: `Username or password is empty!`
     })
@@ -56,7 +56,7 @@ const handleSignUp = () => {
 
   if (password !== passwordConfirm) {
     ElMessage({
-      duration: 2000,
+      duration: 1200,
       type: 'error',
       message: `Password does not match!`
     })
@@ -70,13 +70,13 @@ const handleSignUp = () => {
     })
     .then(() => {
       ElMessage({
-        duration: 2000,
+        duration: 1200,
         type: 'success',
         message: `Sign up success! Going back to login page...`
       })
       setTimeout(() => {
         router.push('./login')
-      }, 2000)
+      }, 1200)
     })
 }
 </script>

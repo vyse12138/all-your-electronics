@@ -46,9 +46,12 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
 import type CartItem from '../interfaces/CartItem'
+import { useRouter } from 'vue-router'
+
 import axios from 'axios'
 import { useStore } from 'vuex'
 const store = useStore()
+const router = useRouter()
 const handleAdd = (item: CartItem) => {
   store.commit('addOne', item)
 }
@@ -59,6 +62,17 @@ const handleDelete = (item: CartItem) => {
   store.commit('removeFromCart', item)
 }
 const handleCheckOut = () => {
+  if (store.state.loginState === false || store.state.username === '') {
+    ElMessage({
+      duration: 1200,
+      type: 'error',
+      message: `You need to login first! Going to login page...`
+    })
+    setTimeout(() => {
+      router.push('./login')
+    }, 1200)
+    return
+  }
   let data = {
     username: store.state.username,
     price: store.getters.total,

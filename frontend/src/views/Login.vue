@@ -43,16 +43,16 @@ const handleLogin = () => {
       if (!loginFailed) {
         store.commit('login', username)
         ElMessage({
-          duration: 2000,
+          duration: 1200,
           type: 'success',
           message: `Login success! Going to the home page...`
         })
         setTimeout(() => {
           router.push('./')
-        }, 2000)
+        }, 1200)
       } else {
         ElMessage({
-          duration: 2000,
+          duration: 1200,
           type: 'error',
           message: `Username or password is invalid!`
         })

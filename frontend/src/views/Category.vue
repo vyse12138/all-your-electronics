@@ -37,7 +37,7 @@ axios.get(`http://localhost:3000/api/catelog/${catelog}`).then((res) => {
 const handleAddToCart = (product: Product) => {
   store.commit('addToCart', product)
   ElMessage({
-    duration: 2000,
+    duration: 1200,
     type: 'success',
     message: `${product.name} has been added to the cart`
   })
