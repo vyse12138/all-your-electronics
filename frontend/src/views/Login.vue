@@ -38,7 +38,6 @@ const handleLogin = () => {
       password: password
     })
     .then((res) => {
-      console.log(res.data)
       loginFailed = !res.data
       if (!loginFailed) {
         store.commit('login', username)
