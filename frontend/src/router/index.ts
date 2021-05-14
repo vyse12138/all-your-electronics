@@ -10,6 +10,7 @@ import Category from '../views/Category.vue'
 import Admin from '../views/Admin/Admin.vue'
 import User from '../views/User.vue'
 import Chat from '../views/Chat.vue'
+import Track from '../views/Track.vue'
 
 import New from '../views/Admin/New.vue'
 import Edit from '../views/Admin/Edit.vue'
@@ -28,6 +29,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/track',
+    name: 'Track',
+    component: Track
   },
   {
     path: '/user',
