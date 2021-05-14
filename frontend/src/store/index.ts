@@ -3,7 +3,8 @@ import type Product from '../interfaces/Product'
 import type CartItem from '../interfaces/CartItem'
 const defaultState = {
   loginState: false,
-  cart: Array<CartItem>()
+  cart: Array<CartItem>(),
+  username: ''
 }
 
 export default createStore({
@@ -11,11 +12,13 @@ export default createStore({
     return defaultState
   },
   mutations: {
-    login(state: typeof defaultState) {
+    login(state: typeof defaultState, username: string) {
       state.loginState = true
+      state.username = username
     },
     logout(state: typeof defaultState) {
       state.loginState = false
+      state.username = ''
     },
     addToCart(state: typeof defaultState, product: Product) {
       let done = false
@@ -33,6 +36,9 @@ export default createStore({
           quantity: 1
         })
       }
+    },
+    clearCart(state: typeof defaultState) {
+      state.cart = []
     },
     removeFromCart(state: typeof defaultState, item: CartItem) {
       state.cart = state.cart.filter((cartItem) => {
@@ -73,5 +79,13 @@ export default createStore({
       context.commit('logout')
     }
   },
-  getters: {}
+  getters: {
+    total(state: typeof defaultState) {
+      let total = 0
+      for (const cartItem of state.cart) {
+        total += cartItem.price
+      }
+      return total
+    }
+  }
 })

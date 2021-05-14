@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const sqlite3 = require('sqlite3').verbose()
 let accountDB = new sqlite3.Database('./databases/account.db')
-
+let recordDB = new sqlite3.Database('./databases/record.db')
 // CORS
 app.all('/*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -95,8 +95,15 @@ app.post('/api/signup', (req, res) => {
     `INSERT INTO CustomerAccount (Username, Password) VALUES (?, ?)`,
     [req.body.username, req.body.password]
   )
-
   res.status(200).end()
+})
+
+app.post('/api/checkout', (req, res) => {
+  recordDB.run(
+    `INSERT INTO PurchaseRecord (Username, Price, Products) VALUES (?, ?, ?)`,
+    [req.body.username, req.body.price, req.body.item]
+  )
+  res.json(req.body)
 })
 
 app.listen(3000, () => {

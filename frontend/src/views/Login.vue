@@ -41,7 +41,7 @@ const handleLogin = () => {
       console.log(res.data)
       loginFailed = !res.data
       if (!loginFailed) {
-        store.commit('login')
+        store.commit('login', username)
         ElMessage({
           duration: 2000,
           type: 'success',

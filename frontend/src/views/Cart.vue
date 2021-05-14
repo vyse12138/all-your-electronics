@@ -1,26 +1,32 @@
 <template>
   <div>
     <div class="title">
-      <h1>{{ store.state.cart }}</h1>
-
-      <el-table :data="store.state.cart" stripe>
+      <h1>Shopping Cart</h1>
+      <el-table :data="store.state.cart" empty-text="Your cart is empty">
         <el-table-column sortable prop="name" label="Product">
         </el-table-column>
-        <el-table-column sortable prop="price" label="Price"> </el-table-column>
+        <el-table-column sortable prop="price" label="Price($)">
+        </el-table-column>
         <el-table-column sortable prop="quantity" label="Quantity">
         </el-table-column>
         <el-table-column label="Operation">
           <template #default="scope">
-            <el-button size="small" type="success" @click="handleAdd(scope.row)"
+            <el-button
+              plain
+              size="small"
+              type="success"
+              @click="handleAdd(scope.row)"
               >+ 1
             </el-button>
             <el-button
+              plain
               size="small"
               type="warning"
               @click="handleRemove(scope.row)"
               >- 1
             </el-button>
             <el-button
+              plain
               size="small"
               type="danger"
               @click="handleDelete(scope.row)"
@@ -29,12 +35,18 @@
           </template>
         </el-table-column>
       </el-table>
+      <h2>Total: ${{ store.getters.total }}</h2>
+      <el-button plain type="primary" @click="handleCheckOut"
+        >Check Out</el-button
+      >
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ElMessage } from 'element-plus'
 import type CartItem from '../interfaces/CartItem'
+import axios from 'axios'
 import { useStore } from 'vuex'
 const store = useStore()
 const handleAdd = (item: CartItem) => {
@@ -46,5 +58,23 @@ const handleRemove = (item: CartItem) => {
 const handleDelete = (item: CartItem) => {
   store.commit('removeFromCart', item)
 }
-ref: msg = 'Cart'
+const handleCheckOut = () => {
+  let data = {
+    username: store.state.username,
+    price: store.getters.total,
+    item: store.state.cart
+      .map((item: CartItem) => {
+        return item.name
+      })
+      .join()
+  }
+  axios.post('http://localhost:3000/api/checkout', data).then(() => {
+    store.commit('clearCart')
+    ElMessage({
+      duration: 2000,
+      type: 'success',
+      message: `Check out success!`
+    })
+  })
+}
 </script>
