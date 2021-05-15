@@ -77,7 +77,7 @@ const handleCheckOut = () => {
       .map((item: CartItem) => {
         return item.name
       })
-      .join()
+      .join(', ')
   }
   axios.post('http://localhost:3000/api/checkout', data).then(() => {
     store.commit('clearCart')

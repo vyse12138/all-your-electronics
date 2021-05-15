@@ -106,6 +106,20 @@ app.post('/api/checkout', (req, res) => {
   res.json(req.body)
 })
 
+app.post('/api/order', (req, res) => {
+  recordDB.all(
+    `SELECT * FROM PurchaseRecord WHERE Username=?`,
+    [req.body.username],
+    (err, rows) => {
+      let order = []
+      rows.forEach((row) => {
+        order.push(row)
+      })
+      res.json(order)
+    }
+  )
+})
+
 app.listen(3000, () => {
   console.log('project listening at http://localhost:$3000')
 })
