@@ -1,9 +1,9 @@
 type PurchaseRecord = {
-  Id: number
-  Date: string
-  Username: string
-  Price: number
-  Products: string
-  Shipment: string
+  id: number
+  date: string
+  username: string
+  price: number
+  products: string
+  shipment: string
 }
 export default PurchaseRecord

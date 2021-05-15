@@ -82,6 +82,14 @@ app.get('/api/orders', (req, res) => {
   )
 })
 
+app.post('/api/orders/edit', (req, res) => {
+  recordDB.run('UPDATE PurchaseRecord SET shipment=? WHERE id=?', [
+    req.body.shipment,
+    req.body.id
+  ])
+  res.status(200).end()
+})
+
 app.listen(3000, () => {
   console.log('project listening at http://localhost:$3000')
 })

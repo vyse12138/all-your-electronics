@@ -2,18 +2,18 @@
   <div>
     <h1>Track Your Order</h1>
     <el-table :data="order" empty-text="You have no order">
-      <el-table-column sortable prop="Id" label="Order ID"> </el-table-column>
+      <el-table-column sortable prop="id" label="Order ID"> </el-table-column>
       <el-table-column
         sortable
-        prop="Date"
+        prop="date"
         label="Order Date"
       ></el-table-column>
 
-      <el-table-column sortable prop="Price" label="Price($)">
+      <el-table-column sortable prop="price" label="Price($)">
       </el-table-column>
-      <el-table-column sortable prop="Products" label="Products">
+      <el-table-column sortable prop="products" label="Products">
       </el-table-column>
-      <el-table-column sortable prop="Shipment" label="Shipment">
+      <el-table-column sortable prop="shipment" label="Shipment">
       </el-table-column>
     </el-table>
   </div>

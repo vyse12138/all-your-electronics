@@ -1,20 +1,11 @@
 <template>
   <div>
-    <div class="admin-new">
-      <div class="container">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-          <ul class="admin-menu">
-            <li>
-              <router-link to="/admin/products">View Products</router-link>
-            </li>
-            <li>
-              <router-link to="/admin/orders">Orders</router-link>
-            </li>
-          </ul>
-        </div>
-        <router-view></router-view>
-      </div>
-    </div>
+    <el-menu default-active="/" mode="horizontal" router>
+      <el-menu-item index="/admin/products"> View Products </el-menu-item>
+      <el-menu-item index="/admin/orders"> View Orders </el-menu-item>
+    </el-menu>
+
+    <router-view></router-view>
   </div>
 </template>
 
