@@ -12,9 +12,10 @@ import User from '../views/User.vue'
 import Chat from '../views/Chat.vue'
 import Track from '../views/Track.vue'
 
-import New from '../views/Admin/New.vue'
+import New from '../views/Admin/Orders.vue'
 import Edit from '../views/Admin/Edit.vue'
-import Product from '../views/Admin/Product.vue'
+import Products from '../views/Admin/Products.vue'
+import Orders from '../views/Admin/Orders.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 
@@ -71,9 +72,14 @@ const routes: Array<RouteRecordRaw> = [
         component: New
       },
       {
-        path: 'product',
-        name: 'Product',
-        component: Product
+        path: 'orders',
+        name: 'Orders',
+        component: Orders
+      },
+      {
+        path: 'products',
+        name: 'Products',
+        component: Products
       },
       {
         path: 'edit/:id',

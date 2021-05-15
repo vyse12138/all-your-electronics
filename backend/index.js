@@ -106,6 +106,7 @@ app.post('/api/checkout', (req, res) => {
   res.json(req.body)
 })
 
+// customer check orders
 app.post('/api/order', (req, res) => {
   recordDB.all(
     `SELECT * FROM PurchaseRecord WHERE Username=?`,
@@ -116,6 +117,21 @@ app.post('/api/order', (req, res) => {
         order.push(row)
       })
       res.json(order)
+    }
+  )
+})
+
+// staff check orders
+app.get('/api/orders', (req, res) => {
+  recordDB.all(
+    `SELECT * FROM PurchaseRecord`,
+    [req.body.username],
+    (err, rows) => {
+      let orders = []
+      rows.forEach((row) => {
+        orders.push(row)
+      })
+      res.json(orders)
     }
   )
 })
