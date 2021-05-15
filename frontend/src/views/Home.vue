@@ -21,12 +21,12 @@
 import { ref } from 'vue'
 
 const storeCatalog = [
-  { name: 'Phone', img: 'Phone.jpg' },
-  { name: 'Computer', img: 'Computer.jpg' },
+  { name: 'phone', img: 'Phone.jpg' },
+  { name: 'computer', img: 'Computer.jpg' },
   { name: 'TV', img: 'TV.jpg' },
-  { name: 'Camera', img: 'Camera.jpg' },
-  { name: 'Pad', img: 'Pad.jpg' },
-  { name: 'Headphone', img: 'Headphone.jpg' }
+  { name: 'camera', img: 'Camera.jpg' },
+  { name: 'pad', img: 'Pad.jpg' },
+  { name: 'headphone', img: 'Headphone.jpg' }
 ]
 </script>
 
