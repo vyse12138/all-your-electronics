@@ -29,7 +29,10 @@ app.post('/api/login', loginModule.handleLogin)
 app.post('/api/signup', loginModule.handleSignUp)
 
 // product api
-app.get('/api/catelog/:category', productModule.handleProduct)
+app.get('/api/product/', productModule.handleProduct)
+app.get('/api/product/:category', productModule.handleProductCategory)
+app.post('/api/product/delete', productModule.handleDeleteProduct)
+app.post('/api/product/new', productModule.handleNewProduct)
 
 // checkout api
 app.post('/api/checkout', checkoutModule.handleCheckout)

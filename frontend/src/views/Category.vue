@@ -28,8 +28,7 @@ const route = useRoute()
 const catelog = route.params.name
 const products: Array<Product> = reactive([])
 
-axios.get(`http://localhost:3000/api/catelog/${catelog}`).then((res) => {
-  console.log(res.data)
+axios.get(`http://localhost:3000/api/product/${catelog}`).then((res) => {
   res.data.map((e: Product) => {
     products.push(e)
   })

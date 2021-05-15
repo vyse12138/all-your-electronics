@@ -49,5 +49,10 @@ const handleChange = (scope: any) => {
     id: scope.row.id,
     shipment: scope.row.shipment
   })
+  ElMessage({
+    duration: 1200,
+    type: 'success',
+    message: 'Shipment state changed'
+  })
 }
 </script>

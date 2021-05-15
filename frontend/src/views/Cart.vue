@@ -93,7 +93,7 @@ const handleCheckOut = () => {
   axios.post('http://localhost:3000/api/checkout', data).then(() => {
     store.commit('clearCart')
     ElMessage({
-      duration: 2000,
+      duration: 1200,
       type: 'success',
       message: `Check out success!`
     })
