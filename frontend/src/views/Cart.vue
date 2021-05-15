@@ -70,14 +70,25 @@ const handleCheckOut = () => {
     }, 1200)
     return
   }
-  let data = {
+  if (store.state.cart.length === 0) {
+    ElMessage({
+      duration: 1200,
+      type: 'warning',
+      message: `Your cart is empty!`
+    })
+    return
+  }
+  const date = new Date()
+  const data = {
+    date: date.toLocaleDateString(),
     username: store.state.username,
     price: store.getters.total,
     item: store.state.cart
       .map((item: CartItem) => {
-        return item.name
+        return item.quantity + ' x ' + item.name
       })
-      .join(', ')
+      .join(', '),
+    shipment: 'pending'
   }
   axios.post('http://localhost:3000/api/checkout', data).then(() => {
     store.commit('clearCart')

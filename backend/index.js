@@ -100,8 +100,14 @@ app.post('/api/signup', (req, res) => {
 
 app.post('/api/checkout', (req, res) => {
   recordDB.run(
-    `INSERT INTO PurchaseRecord (Username, Price, Products) VALUES (?, ?, ?)`,
-    [req.body.username, req.body.price, req.body.item]
+    `INSERT INTO PurchaseRecord (Date, Username, Price, Products, Shipment) VALUES (?, ? , ?, ?, ?)`,
+    [
+      req.body.date,
+      req.body.username,
+      req.body.price,
+      req.body.item,
+      req.body.shipment
+    ]
   )
   res.json(req.body)
 })
