@@ -1,16 +1,12 @@
 const express = require('express')
-const app = express()
 const loginModule = require('./src/login')
+const feedbackModule = require('./src/feedback')
 const productModule = require('./src/product')
 const checkoutModule = require('./src/checkout')
 const orderModule = require('./src/order')
+const app = express()
 
-const sqlite3 = require('sqlite3').verbose()
-let accountDB = new sqlite3.Database('./databases/account.db')
-let recordDB = new sqlite3.Database('./databases/record.db')
-let productDB = new sqlite3.Database('./databases/product.db')
-// CORS
-
+// CORS handling middleware, used for frontend testing
 app.all('/*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
@@ -20,7 +16,10 @@ app.all('/*', (req, res, next) => {
   )
   next()
 })
+
+//enable json response
 app.use(express.json())
+
 // host front end pages
 app.use(express.static('public'))
 
@@ -40,9 +39,12 @@ app.post('/api/checkout', checkoutModule.handleCheckout)
 // orders api
 app.post('/api/order', orderModule.handleUserOrder)
 app.get('/api/orders', orderModule.handleAdminOrder)
-
 app.post('/api/orders/edit', orderModule.handleEditOrder)
 
+// feedback api
+app.post('/api/feedback', feedbackModule.handlePostFeedback)
+app.get('/api/feedbacks', feedbackModule.handleGetFeedback)
+
 app.listen(3000, () => {
-  console.log('project listening at http://localhost:$3000')
+  console.log('project listening at http://localhost:3000')
 })

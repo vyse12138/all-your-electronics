@@ -15,6 +15,7 @@ import Track from '../views/Track.vue'
 
 import New from '../views/Admin/New.vue'
 import Products from '../views/Admin/Products.vue'
+import Feedback from '../views/Admin/Feedback.vue'
 import Orders from '../views/Admin/Orders.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
@@ -85,6 +86,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'report',
         name: 'Report',
         component: Report
+      },
+      {
+        path: 'feedback',
+        name: 'Feedback',
+        component: Feedback
       }
     ]
   }

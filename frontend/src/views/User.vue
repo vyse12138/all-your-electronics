@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -39,8 +40,20 @@ const handleLogout = () => {
     router.push('./')
   }, 1200)
 }
-
-const handleFeedbackSend = () => {}
+const handleFeedbackSend = () => {
+  let data = {
+    username: store.state.username,
+    feedback: feedback
+  }
+  axios.post('http://localhost:3000/api/feedback', data).then(() => {
+    feedback = ''
+    ElMessage({
+      duration: 1200,
+      type: 'success',
+      message: `Feedback sent!`
+    })
+  })
+}
 </script>
 
 <style scoped>

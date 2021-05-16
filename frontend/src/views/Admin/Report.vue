@@ -18,9 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { mapActions, useStore } from 'vuex'
-import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
 import { reactive } from 'vue'
 import type PurchaseRecord from '../../interfaces/PurchaseRecord'
 import axios from 'axios'
