@@ -2,7 +2,7 @@
   <div>
     <div class="title">
       <h1>All Products</h1>
-      <el-table :data="orders" empty-text="There is no order">
+      <el-table :data="products" empty-text="There is no order">
         <el-table-column prop="id" label="Product ID"> </el-table-column>
         <el-table-column prop="name" label="Product"> </el-table-column>
         <el-table-column prop="category" label="Product Category">
@@ -33,10 +33,10 @@ import { reactive } from 'vue'
 import type PurchaseRecord from '../../interfaces/PurchaseRecord'
 import axios from 'axios'
 
-const orders = reactive(Array<PurchaseRecord>())
+const products = reactive(Array<PurchaseRecord>())
 axios.get('http://localhost:3000/api/product').then((res) => {
-  for (const o of res.data) {
-    orders.push(o)
+  for (const p of res.data) {
+    products.push(p)
   }
 })
 
@@ -47,9 +47,9 @@ const handleDelete = (scope: any) => {
     })
     .then(() => {
       axios.get('http://localhost:3000/api/product').then((res) => {
-        orders.length = 0
+        products.length = 0
         for (const o of res.data) {
-          orders.push(o)
+          products.push(o)
         }
       })
       ElMessage({

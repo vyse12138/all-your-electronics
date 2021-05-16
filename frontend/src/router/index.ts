@@ -8,6 +8,7 @@ import Home from '../views/Home.vue'
 import Cart from '../views/Cart.vue'
 import Category from '../views/Category.vue'
 import Admin from '../views/Admin/Admin.vue'
+import Report from '../views/Admin/Report.vue'
 import User from '../views/User.vue'
 import Chat from '../views/Chat.vue'
 import Track from '../views/Track.vue'
@@ -79,6 +80,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'products',
         name: 'Products',
         component: Products
+      },
+      {
+        path: 'report',
+        name: 'Report',
+        component: Report
       }
     ]
   }

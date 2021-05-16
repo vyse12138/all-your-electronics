@@ -4,6 +4,8 @@
       <el-menu-item index="/admin/products"> View Products </el-menu-item>
       <el-menu-item index="/admin/orders"> View Orders </el-menu-item>
       <el-menu-item index="/admin/new"> New Products </el-menu-item>
+
+      <el-menu-item index="/admin/report"> Report </el-menu-item>
     </el-menu>
 
     <router-view></router-view>
