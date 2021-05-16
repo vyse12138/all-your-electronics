@@ -27,3 +27,21 @@ exports.handleSignUp = (req, res) => {
   )
   res.status(200).end()
 }
+
+exports.handleAdminLogin = (req, res) => {
+  accountDB.get(
+    'SELECT * FROM StaffAccount WHERE Username=? AND Password=?',
+    [req.body.username, req.body.password],
+    (err, row) => {
+      if (err) {
+        throw err
+      }
+
+      if (row) {
+        res.send(true)
+      } else {
+        res.send(false)
+      }
+    }
+  )
+}

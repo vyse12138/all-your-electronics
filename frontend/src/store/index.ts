@@ -3,6 +3,7 @@ import type Product from '../interfaces/Product'
 import type CartItem from '../interfaces/CartItem'
 const defaultState = {
   loginState: false,
+  adminState: false,
   cart: Array<CartItem>(),
   username: ''
 }
@@ -12,6 +13,9 @@ export default createStore({
     return defaultState
   },
   mutations: {
+    admin(state: typeof defaultState) {
+      state.adminState = true
+    },
     login(state: typeof defaultState, username: string) {
       state.loginState = true
       state.username = username

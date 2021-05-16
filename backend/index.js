@@ -26,6 +26,7 @@ app.use(express.static('public'))
 // login and sign up api
 app.post('/api/login', loginModule.handleLogin)
 app.post('/api/signup', loginModule.handleSignUp)
+app.post('/api/login/admin', loginModule.handleAdminLogin)
 
 // product api
 app.get('/api/product/', productModule.handleProduct)

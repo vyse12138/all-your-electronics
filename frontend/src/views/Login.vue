@@ -64,8 +64,4 @@ const handleLogin = () => {
 .el-input {
   width: 300px;
 }
-.el-alert {
-  width: 300px;
-  margin: 0 auto;
-}
 </style>
