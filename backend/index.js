@@ -6,6 +6,28 @@ const checkoutModule = require('./src/checkout')
 const orderModule = require('./src/order')
 const app = express()
 
+const http = require('http')
+const server = http.createServer(app)
+const { Server } = require('socket.io')
+
+const io = new Server(server, {
+  cors: {
+    origin: ['http://localhost:3001']
+  }
+})
+
+io.on('connection', (socket) => {
+  console.log('a user connected')
+
+  socket.on('chat', (message) => {
+    console.log('message: ' + message)
+    io.emit('chat', message)
+  })
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
+})
+
 // CORS handling middleware, used for frontend testing
 app.all('/*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -46,6 +68,10 @@ app.post('/api/orders/edit', orderModule.handleEditOrder)
 app.post('/api/feedback', feedbackModule.handlePostFeedback)
 app.get('/api/feedbacks', feedbackModule.handleGetFeedback)
 
-app.listen(3000, () => {
-  console.log('project listening at http://localhost:3000')
+// app.listen(3000, () => {
+//   console.log('project listening at http://localhost:3000')
+// })
+
+server.listen(3000, () => {
+  console.log('listening on *:3000')
 })

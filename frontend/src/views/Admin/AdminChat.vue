@@ -1,6 +1,6 @@
 <template>
   <div id="chat">
-    <h1>Chat with our staff</h1>
+    <h1>Reply your customers</h1>
     <div id="chat">
       <div>
         <h3 v-for="message in chat">
@@ -32,13 +32,15 @@ socket.on('chat', function (message) {
 ref: message = ''
 ref: chat = Array<string>()
 ref: disable = true
+const store = useStore()
+const router = useRouter()
 
 const handleInput = () => {
   disable = message.length ? false : true
 }
 
 const handleChatSend = () => {
-  socket.emit('chat', 'customer: ' + message)
+  socket.emit('chat', 'Staff: ' + message)
   message = ''
   disable = true
 }

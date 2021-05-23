@@ -14,6 +14,8 @@ import Chat from '../views/Chat.vue'
 import Track from '../views/Track.vue'
 
 import New from '../views/Admin/New.vue'
+import AdminChat from '../views/Admin/AdminChat.vue'
+
 import Products from '../views/Admin/Products.vue'
 import Feedback from '../views/Admin/Feedback.vue'
 import Orders from '../views/Admin/Orders.vue'
@@ -71,6 +73,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'new',
         name: 'New',
         component: New
+      },
+      {
+        path: 'chat',
+        name: 'AdminChat',
+        component: AdminChat
       },
       {
         path: 'orders',

@@ -7,6 +7,7 @@
 
       <el-menu-item index="/admin/feedback"> Customer Feedbacks </el-menu-item>
       <el-menu-item index="/admin/report"> Report </el-menu-item>
+      <el-menu-item index="/admin/chat"> Chat </el-menu-item>
     </el-menu>
 
     <router-view></router-view>
