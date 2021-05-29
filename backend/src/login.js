@@ -1,6 +1,5 @@
 const sqlite3 = require('sqlite3').verbose()
-
-let accountDB = new sqlite3.Database('./databases/account.db')
+const accountDB = new sqlite3.Database('./databases/account.db')
 
 exports.handleLogin = (req, res) => {
   accountDB.get(

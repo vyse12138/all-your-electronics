@@ -1,6 +1,5 @@
 const sqlite3 = require('sqlite3').verbose()
-
-let recordDB = new sqlite3.Database('./databases/record.db')
+const recordDB = new sqlite3.Database('./databases/record.db')
 
 exports.handleCheckout = (req, res) => {
   recordDB.run(

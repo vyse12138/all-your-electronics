@@ -1,6 +1,5 @@
 const sqlite3 = require('sqlite3').verbose()
-
-let feedbackDB = new sqlite3.Database('./databases/feedback.db')
+const feedbackDB = new sqlite3.Database('./databases/feedback.db')
 
 exports.handleGetFeedback = (req, res) => {
   feedbackDB.all('SELECT * FROM Feedback', (err, rows) => {

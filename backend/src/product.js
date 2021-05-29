@@ -1,6 +1,5 @@
 const sqlite3 = require('sqlite3').verbose()
-
-let productDB = new sqlite3.Database('./databases/product.db')
+const productDB = new sqlite3.Database('./databases/product.db')
 
 exports.handleProductCategory = (req, res) => {
   productDB.all(
