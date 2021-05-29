@@ -8,6 +8,8 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
+
+// CORS handler for chat server
 const io = new Server(server, {
   cors: {
     origin: ['http://localhost:3001']
