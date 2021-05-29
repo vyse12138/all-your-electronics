@@ -5,7 +5,7 @@
 1. install Node.js from https://nodejs.org/en/
 2. clone the project
 3. redirect to project folder and bring up your command line tool
-4. type following commands in order:
+4. type following commands in listed order:
    - `cd backend`
    - `npm i`
    - `npm run start`
