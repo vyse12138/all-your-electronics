@@ -9,4 +9,4 @@
    - `cd backend`
    - `npm i`
    - `npm run start`
-5. bring up your browser and go to http://localhost:$3000 for preview
+5. bring up your browser and go to http://localhost:3000 for preview
